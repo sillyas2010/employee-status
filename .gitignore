@@ -1,3 +1,16 @@
+# Yarn
+.yarn
+.pnp.*
+
+# TS
+*.tsbuildinfo
+
+# History
+.history
+
+# Testing
+coverage
+
 # Logs
 logs
 *.log
@@ -8,6 +21,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+*/build/*
 dist
 dist-ssr
 *.local
