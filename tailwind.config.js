@@ -1,22 +1,27 @@
 /** @type {import('tailwindcss').Config} */
+import defaultTheme from 'tailwindcss/defaultTheme';
+import colors from './src/client/constants/colors';
+import fontSize from './src/client/constants/fontSize';
+import { screens } from './src/client/constants/breakpoints';
+
 export default {
-  content: ['./src/**/*.{js,jsx,ts,tsx}'],
+  content: ['./index.html', './src/client/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
-      colors: {
-        primary: {
-          DEFAULT: '#0095FF',
-          hover: '#0076CC',
-        },
-        status: {
-          working: '#44D600',
-          vacation: '#FF3B3B',
-          lunch: '#FFB800',
-          business: '#0095FF',
-        },
+      fontFamily: {
+        sans: ['Noto Sans', ...defaultTheme.fontFamily.sans],
       },
+      fontSize,
       borderRadius: {
-        card: '10px',
+        button: '0.325rem',
+      },
+      colors,
+      screens,
+      maxWidth: {
+        container: '80rem',
+      },
+      width: {
+        container: '80rem',
       },
     },
   },
