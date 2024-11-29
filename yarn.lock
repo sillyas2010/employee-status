@@ -3813,6 +3813,7 @@ __metadata:
     postcss: "npm:^8.4.49"
     prettier: "npm:^3.2.5"
     prettier-eslint: "npm:^16.3.0"
+    prettier-plugin-organize-imports: "npm:^4.1.0"
     react: "npm:^18.2.0"
     react-aria: "npm:^3.32.1"
     react-dom: "npm:^18.2.0"
@@ -6202,6 +6203,20 @@ __metadata:
     svelte-eslint-parser:
       optional: true
   checksum: 10c0/9efe0fbfceee8d635c1cdb62bd8442b5c4f4b8045d8ec438f5ab0acc2d696c42723c67a4f9b9a660975c39ea95cedb60b310cd77aefe302faf7d0e9ff67e0cae
+  languageName: node
+  linkType: hard
+
+"prettier-plugin-organize-imports@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "prettier-plugin-organize-imports@npm:4.1.0"
+  peerDependencies:
+    prettier: ">=2.0"
+    typescript: ">=2.9"
+    vue-tsc: ^2.1.0
+  peerDependenciesMeta:
+    vue-tsc:
+      optional: true
+  checksum: 10c0/fb2d6d415bac96b65a77ea7de9f708e8613436aeb9d82bbe63edeb312fd1362c0d3c57319bd4cc4adfc8b9964fb6c205cbbf8efd9546931b0f9874c0ae624a6a
   languageName: node
   linkType: hard
 

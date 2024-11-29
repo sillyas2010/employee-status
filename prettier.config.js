@@ -1,8 +1,13 @@
 export default {
-  semi: true,
-  trailingComma: 'es5',
+  arrowParens: 'avoid',
+  bracketSpacing: true,
+  jsxBracketSameLine: false,
+  printWidth: 80,
+  semi: false,
   singleQuote: true,
-  printWidth: 100,
   tabWidth: 2,
-  endOfLine: 'auto',
+  trailingComma: 'all',
+  useTabs: true,
+  plugins: ['prettier-plugin-organize-imports'],
+  organizeImportsSkipDestructiveCodeActions: true,
 };
