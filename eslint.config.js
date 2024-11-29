@@ -6,7 +6,7 @@ import globals from 'globals'
 export default [
 	// Base config for all JavaScript/TypeScript files
 	{
-		ignores: ['dist/**', 'node_modules/**'],
+		ignores: ['.history/**', 'dist/**', 'node_modules/**'],
 		plugins: {
 			'@typescript-eslint': typescript,
 		},
