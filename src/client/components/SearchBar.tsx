@@ -1,16 +1,16 @@
 interface SearchBarProps {
-  onSearch: (query: string) => void;
+	onSearch: (query: string) => void
 }
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
-  return (
-    <input
-      type="text"
-      placeholder="Type to search"
-      className="search-input"
-      onChange={(e) => onSearch(e.target.value)}
-    />
-  );
-};
+	return (
+		<input
+			type="text"
+			placeholder="Type to search"
+			className="search-input"
+			onChange={e => onSearch(e.target.value)}
+		/>
+	)
+}
 
-export default SearchBar; 
+export default SearchBar

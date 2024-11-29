@@ -1,21 +1,21 @@
 {
-  "compilerOptions": {
-    "composite": true,
-    "skipLibCheck": true,
-    "module": "ESNext",
-    "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "rootDir": "src/server",
-    "outDir": "dist/server",
-    "esModuleInterop": true,
-    "target": "ES2020",
-    "lib": ["ES2020"],
-    "types": ["node"],
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    "resolveJsonModule": true
-  },
-  "include": ["src/server/**/*"]
-} 
+	"compilerOptions": {
+		"composite": true,
+		"skipLibCheck": true,
+		"module": "ESNext",
+		"moduleResolution": "node",
+		"allowSyntheticDefaultImports": true,
+		"rootDir": "src/server",
+		"outDir": "dist/server",
+		"esModuleInterop": true,
+		"target": "ES2020",
+		"lib": ["ES2020"],
+		"types": ["node"],
+		"strict": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"noFallthroughCasesInSwitch": true,
+		"resolveJsonModule": true
+	},
+	"include": ["src/server/**/*"]
+}

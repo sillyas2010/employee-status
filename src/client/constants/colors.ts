@@ -1,6 +1,6 @@
 import tailwindColors from 'tailwindcss/colors'
 
-const primaryPalette = { ...tailwindColors.blue, 500: '#479AEA' }
+const primaryPalette = { ...tailwindColors.sky, 500: '#109CF1' }
 const colors = {
 	primary: {
 		...primaryPalette,
