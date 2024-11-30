@@ -10,6 +10,7 @@ export default {
 		extend: {
 			fontFamily: {
 				sans: ['Noto Sans', ...defaultTheme.fontFamily.sans],
+				madet: ['Madet', ...defaultTheme.fontFamily.sans],
 			},
 			fontSize,
 			borderRadius: {
