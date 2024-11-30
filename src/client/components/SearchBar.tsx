@@ -3,11 +3,14 @@ interface SearchBarProps {
 }
 
 const SearchBar = ({ onSearch }: SearchBarProps) => {
+	const searchIcon =
+		"bg-[.3rem_50%] bg-[length:1.1rem_1.1rem] bg-no-repeat bg-[url('/search.svg')]"
+
 	return (
 		<input
 			type="text"
 			placeholder="Type to search"
-			className="search-input"
+			className={`w-full font-madet font-normal text-[1.13rem] tracking-[.015rem] pl-[2.4rem] pr-5 ${searchIcon} focus:outline-none focus:ring-2 focus:ring-primary focus:rounded-sm`}
 			onChange={e => onSearch(e.target.value)}
 		/>
 	)

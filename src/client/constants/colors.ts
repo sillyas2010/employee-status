@@ -7,7 +7,8 @@ const colors = {
 		DEFAULT: primaryPalette[500],
 	},
 	secondary: {
-		...tailwindColors.neutral,
+		...tailwindColors.gray,
+		500: '#7B808D',
 		DEFAULT: tailwindColors.neutral[200],
 	},
 	background: tailwindColors.neutral[100],

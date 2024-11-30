@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 
+import Button from './components/Button'
 import EmployeeList from './components/EmployeeList'
 import Filters from './components/Filters'
 import { Employee } from './types'
@@ -52,12 +53,28 @@ function App() {
 	}
 
 	return (
-		<div className="w-full max-w-6xl mx-auto px-4 py-4 flex flex-col">
-			<Filters onSearch={handleSearch} onStatusFilter={handleStatusFilter} />
-			<EmployeeList
-				employees={filteredEmployees}
-				onStatusUpdate={fetchEmployees}
-			/>
+		<div className="w-full max-w-6xl mx-auto px-9 py-[1.9rem] flex flex-col">
+			<section className="flex items-stretch justify-between">
+				<Button
+					className="text-xl leading-[1.5rem] rounded-md"
+					padding="pl-[2.3rem] pr-[2rem] py-[1.2rem]"
+				>
+					Create{' '}
+					<span className="font-sans h-0 inline-block relative top-[.35rem] left-[.25rem] after:content-['+'] after:text-[2.4rem] after:[line-height:0]" />
+				</Button>
+				<div className="flex flex-1 justify-between items-center ml-[.5rem] rounded-md bg-white px-5">
+					<Filters
+						onSearch={handleSearch}
+						onStatusFilter={handleStatusFilter}
+					/>
+				</div>
+			</section>
+			<section className="mt-[5rem]">
+				<EmployeeList
+					employees={filteredEmployees}
+					onStatusUpdate={fetchEmployees}
+				/>
+			</section>
 		</div>
 	)
 }

@@ -1,6 +1,5 @@
 export default {
 	arrowParens: 'avoid',
-	bracketSpacing: true,
 	jsxBracketSameLine: false,
 	printWidth: 80,
 	semi: false,

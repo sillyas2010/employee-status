@@ -28,15 +28,15 @@ const Button = ({
 	)
 
 	const baseStyles =
-		'rounded-button font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2'
+		'rounded-button font-madet font-medium tracking-wider transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary'
 
 	const variantStyles = {
 		primary: `
-      bg-blue-600 text-white 
-      hover:bg-blue-700 
-      active:bg-blue-800 
-      focus:ring-blue-500 
-      disabled:bg-blue-300 
+      bg-primary text-white 
+      hover:bg-primary-600 
+      active:bg-primary-700 
+      focus:ring-primary-600 
+      disabled:bg-primary-300 
       disabled:cursor-not-allowed
       ${isPressed ? 'scale-95' : ''}
     `,
