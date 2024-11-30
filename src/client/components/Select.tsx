@@ -9,11 +9,15 @@ interface SelectProps {
 	options: Option[]
 	placeholder?: string
 	className?: string
+	hasDefault?: boolean
+	selectedValue?: string
 	onChange: (value: string) => void
 }
 
 function Select({
 	options,
+	hasDefault = true,
+	selectedValue,
 	placeholder = 'Select an option',
 	className = '',
 	onChange,
@@ -28,9 +32,13 @@ function Select({
 					onChange(e.target.value)
 				}
 			>
-				<option value="">{placeholder}</option>
+				{hasDefault && <option value="">{placeholder}</option>}
 				{options.map(option => (
-					<option key={option.value} value={option.value}>
+					<option
+						key={option.value}
+						value={option.value}
+						selected={selectedValue === option.value}
+					>
 						{option.label}
 					</option>
 				))}

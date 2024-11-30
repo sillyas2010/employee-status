@@ -24,6 +24,10 @@ export default {
 			width: {
 				container: '80rem',
 			},
+			dropShadow: {
+				gray: '-2px 5px 16px rgb(204, 204, 204, 0.4)',
+				primary: '-2px 5px 16px rgba(16, 156, 241, 0.4)',
+			},
 		},
 	},
 	plugins: [],

@@ -12,6 +12,12 @@ const colors = {
 		DEFAULT: tailwindColors.neutral[200],
 	},
 	background: tailwindColors.neutral[100],
+	status: {
+		working: '#71E1A4',
+		'on-vacation': '#F9A59D',
+		'business-trip': '#BA59DC',
+		'lunch-time': '#FDE68A',
+	},
 }
 
 export default colors
