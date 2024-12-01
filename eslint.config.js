@@ -25,6 +25,15 @@ export default [
 		},
 	},
 
+	{
+		files: ['netlify/functions/**/*.ts'],
+		languageOptions: {
+			parserOptions: {
+				project: './tsconfig.netlify.json',
+			},
+		},
+	},
+
 	// Server-side TypeScript config
 	{
 		files: ['src/server/**/*.ts'],
