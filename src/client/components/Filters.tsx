@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { statusOptions } from '../constants/statuses'
 import SearchBar from './SearchBar'
 import Select from './Select'
@@ -19,7 +21,7 @@ const Filters = ({ onSearch, onStatusFilter }: FiltersProps) => {
 				<Select
 					options={statusOptions}
 					placeholder="Filter by status"
-					className="min-h-10 text-[1.15rem]"
+					className="min-h-10 text-[1.15rem] pl-[1.1rem] pr-[2.1rem]"
 					onChange={onStatusFilter}
 				/>
 			</div>
@@ -27,4 +29,4 @@ const Filters = ({ onSearch, onStatusFilter }: FiltersProps) => {
 	)
 }
 
-export default Filters
+export default memo(Filters)

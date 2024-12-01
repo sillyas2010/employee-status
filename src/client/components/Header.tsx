@@ -1,13 +1,18 @@
-import { useState } from 'react'
+import { memo, useCallback, useMemo, useState } from 'react'
 
 import Button from './Button'
 
 const Header = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(true)
-	const handleLogout = () => {
+
+	const loginText = useMemo(
+		() => (isLoggedIn ? 'Log Out' : 'Log In'),
+		[isLoggedIn],
+	)
+	const handleLogout = useCallback(() => {
 		setIsLoggedIn(currentIsLoggedIn => !currentIsLoggedIn)
 		console.log('Auth is planned in v1.0 ;)')
-	}
+	}, [])
 
 	return (
 		<div className="w-full bg-white">
@@ -19,11 +24,11 @@ const Header = () => {
 					className="text-[.95rem] font-normal leading-5 mt-1 min-w-[7.5rem] focus:ring-offset-2"
 					padding="py-1.5 px-6"
 				>
-					{isLoggedIn ? 'Log Out' : 'Log In'}
+					{loginText}
 				</Button>
 			</div>
 		</div>
 	)
 }
 
-export default Header
+export default memo(Header)

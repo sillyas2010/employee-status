@@ -1,4 +1,4 @@
-import { useRef } from 'react'
+import { memo, useRef } from 'react'
 
 import { useButton } from '@react-aria/button'
 
@@ -64,4 +64,4 @@ const Button = ({
 	)
 }
 
-export default Button
+export default memo(Button)

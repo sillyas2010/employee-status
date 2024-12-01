@@ -1,3 +1,5 @@
+import { useCallback } from 'react'
+
 import Button from './components/Button'
 import CreateEmployeeModal from './components/CreateEmployeeModal'
 import EmployeeList from './components/EmployeeList'
@@ -14,13 +16,21 @@ function App() {
 		requestStatusChange,
 	} = useEmployeesList()
 
+	const memoizedOpenCreateModal = useCallback(() => {
+		setIsCreateModalOpen(true)
+	}, [setIsCreateModalOpen])
+
+	const memoizedHandleSubmit = useCallback(() => {
+		console.log('Creation is planned in v1.0 ;)')
+	}, [])
+
 	return (
 		<div className="w-full max-w-6xl mx-auto px-9 py-[1.9rem] flex flex-col">
 			<section className="flex items-stretch justify-between">
 				<Button
 					className="text-xl leading-[1.5rem] rounded-md focus:ring-offset-2"
 					padding="pl-[2.3rem] pr-[2rem] py-[1.2rem]"
-					onPress={() => setIsCreateModalOpen(true)}
+					onPress={memoizedOpenCreateModal}
 				>
 					Create{' '}
 					<span className="font-sans h-0 inline-block relative top-[.35rem] left-[.25rem] after:content-['+'] after:text-[2.4rem] after:[line-height:0]" />
@@ -39,7 +49,7 @@ function App() {
 				/>
 			</section>
 			<CreateEmployeeModal
-				onSubmit={() => console.log('Creation is planned in v1.0 ;)')}
+				onSubmit={memoizedHandleSubmit}
 				isOpen={isCreateModalOpen}
 				setIsOpen={setIsCreateModalOpen}
 			/>

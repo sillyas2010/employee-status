@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { indicators, statusOptions } from '../constants/statuses'
 import { Employee, EmployeeStatus } from '../types'
 import Select from './Select'
@@ -62,7 +64,7 @@ const EmployeeList = ({ employees, onStatusUpdate }: EmployeeListProps) => {
 									onChange={value =>
 										onStatusUpdate(employee.id, value as EmployeeStatus)
 									}
-									className="w-full py-0 pl-[.8rem] text-xs bg-transparent border-none focus:ring-offset-2"
+									className="w-full py-0 pl-[.8rem] pr-[2.1rem] text-xs bg-transparent border-none focus:ring-offset-2"
 									placeholder="Select an option"
 								/>
 							</div>
@@ -74,4 +76,4 @@ const EmployeeList = ({ employees, onStatusUpdate }: EmployeeListProps) => {
 	)
 }
 
-export default EmployeeList
+export default memo(EmployeeList)

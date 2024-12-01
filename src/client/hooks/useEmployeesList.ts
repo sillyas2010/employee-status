@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { Employee, EmployeeStatus } from '../types'
 
@@ -13,7 +13,7 @@ export const useEmployeesList = () => {
 		fetchEmployees()
 	}, [])
 
-	const fetchEmployees = async () => {
+	const fetchEmployees = useCallback(async () => {
 		try {
 			const response = await fetch('/users')
 			const data = await response.json()
@@ -22,73 +22,81 @@ export const useEmployeesList = () => {
 		} catch (error) {
 			console.error('Error fetching employees:', error)
 		}
-	}
+	}, [])
 
-	const afterStatusUpdate = (employeeId: number, newStatus: EmployeeStatus) => {
-		setEmployees(prevEmployees => {
-			const newEmployees = prevEmployees.map(emp =>
-				emp.id === employeeId ? { ...emp, status: newStatus } : emp,
-			)
+	const filterEmployees = useCallback(
+		(query: string, status: string, initialList = employees) => {
+			let filtered = initialList
 
-			filterEmployees(searchQuery, statusFilter, newEmployees)
+			if (!query && !status) {
+				filtered = initialList
+			}
 
-			return newEmployees
-		})
-	}
+			if (query) {
+				filtered = filtered.filter((emp: Employee) =>
+					emp.name.toLowerCase().includes(query.toLowerCase()),
+				)
+			} else {
+				filtered = initialList
+			}
 
-	const requestStatusChange = async (
-		employeeId: number,
-		newStatus: EmployeeStatus,
-	) => {
-		try {
-			await fetch(`/users/${employeeId}`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ status: newStatus }),
+			if (status) {
+				filtered = filtered.filter((emp: Employee) => emp.status === status)
+			}
+
+			setFilteredEmployees(filtered)
+		},
+		[employees],
+	)
+
+	const handleSearch = useCallback(
+		(query: string) => {
+			setSearchQuery(query)
+			filterEmployees(query, statusFilter)
+		},
+		[statusFilter, filterEmployees],
+	)
+
+	const handleStatusFilter = useCallback(
+		(status: string) => {
+			setStatusFilter(status)
+			filterEmployees(searchQuery, status)
+		},
+		[searchQuery, filterEmployees],
+	)
+
+	const afterStatusUpdate = useCallback(
+		(employeeId: number, newStatus: EmployeeStatus) => {
+			setEmployees(prevEmployees => {
+				const newEmployees = prevEmployees.map(emp =>
+					emp.id === employeeId ? { ...emp, status: newStatus } : emp,
+				)
+
+				filterEmployees(searchQuery, statusFilter, newEmployees)
+
+				return newEmployees
 			})
-			afterStatusUpdate(employeeId, newStatus)
-		} catch (error) {
-			console.error('Error updating employee status:', error)
-		}
-	}
+		},
+		[searchQuery, statusFilter, filterEmployees],
+	)
 
-	const handleSearch = (query: string) => {
-		setSearchQuery(query)
-		filterEmployees(query, statusFilter)
-	}
-
-	const handleStatusFilter = (status: string) => {
-		setStatusFilter(status)
-		filterEmployees(searchQuery, status)
-	}
-
-	const filterEmployees = (
-		query: string,
-		status: string,
-		initialList = employees,
-	) => {
-		let filtered = initialList
-
-		if (!query && !status) {
-			filtered = initialList
-		}
-
-		if (query) {
-			filtered = filtered.filter((emp: Employee) =>
-				emp.name.toLowerCase().includes(query.toLowerCase()),
-			)
-		} else {
-			filtered = initialList
-		}
-
-		if (status) {
-			filtered = filtered.filter((emp: Employee) => emp.status === status)
-		}
-
-		setFilteredEmployees(filtered)
-	}
+	const requestStatusChange = useCallback(
+		async (employeeId: number, newStatus: EmployeeStatus) => {
+			try {
+				await fetch(`/users/${employeeId}`, {
+					method: 'PATCH',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ status: newStatus }),
+				})
+				afterStatusUpdate(employeeId, newStatus)
+			} catch (error) {
+				console.error('Error updating employee status:', error)
+			}
+		},
+		[afterStatusUpdate],
+	)
 
 	return {
 		filteredEmployees,

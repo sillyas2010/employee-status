@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { memo, ReactNode } from 'react'
 
 const Field = ({
 	label,
@@ -15,4 +15,4 @@ const Field = ({
 	</div>
 )
 
-export default Field
+export default memo(Field)

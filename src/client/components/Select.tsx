@@ -1,3 +1,5 @@
+import { memo } from 'react'
+
 import { focusState } from '../constants/styling'
 
 interface Option {
@@ -30,18 +32,15 @@ const Select = ({
 		<div className={`relative ${selectArrow}`}>
 			<select
 				aria-label={label || placeholder}
-				className={`pl-[1.1rem] pr-[2.1rem] appearance-none font-madet font-normal text-secondary-500 ${focusState} focus:rounded-sm ${className}`}
+				value={selectedValue}
+				className={`appearance-none font-madet font-normal text-secondary-500 ${focusState} focus:rounded-sm ${className}`}
 				onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					onChange(e.target.value)
 				}
 			>
 				{hasDefault && <option value="">{placeholder}</option>}
 				{options.map(option => (
-					<option
-						key={option.value}
-						value={option.value}
-						selected={selectedValue === option.value}
-					>
+					<option key={option.value} value={option.value}>
 						{option.label}
 					</option>
 				))}
@@ -50,4 +49,4 @@ const Select = ({
 	)
 }
 
-export default Select
+export default memo(Select)
