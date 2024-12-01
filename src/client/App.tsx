@@ -26,7 +26,7 @@ function App() {
 
 	return (
 		<div className="w-full max-w-6xl mx-auto px-9 py-[1.9rem] flex flex-col">
-			<section className="flex items-stretch justify-between">
+			<section className="flex flex-col sm:flex-row items-stretch justify-between flex-wrap">
 				<Button
 					className="text-xl leading-[1.5rem] rounded-md focus:ring-offset-2"
 					padding="pl-[2.3rem] pr-[2rem] py-[1.2rem]"
@@ -35,7 +35,7 @@ function App() {
 					Create{' '}
 					<span className="font-sans h-0 inline-block relative top-[.35rem] left-[.25rem] after:content-['+'] after:text-[2.4rem] after:[line-height:0]" />
 				</Button>
-				<div className="flex flex-1 justify-between items-center ml-[.5rem] rounded-md bg-white px-5">
+				<div className="flex flex-1 justify-between items-center ml-0 sm:ml-[.5rem] mt-4 sm:mt-0 min-h-16 sm:min-h-0 w-full sm:w-auto rounded-md bg-white px-5">
 					<Filters
 						onSearch={handleSearch}
 						onStatusFilter={handleStatusFilter}
