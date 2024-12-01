@@ -1,0 +1,18 @@
+{
+	"compilerOptions": {
+		"module": "es2022",
+		"target": "es2022",
+		"outDir": "dist/functions",
+		"rootDir": ".",
+		"composite": true,
+		"isolatedModules": true,
+		"allowJs": true,
+		"skipLibCheck": true,
+		"esModuleInterop": true,
+		"strict": true,
+		"moduleResolution": "bundler",
+		"types": ["@netlify/functions"]
+	},
+	"include": ["netlify/functions/**/*"],
+	"exclude": ["node_modules", "dist", "src"]
+}

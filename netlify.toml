@@ -1,0 +1,14 @@
+[build]
+  command = "yarn build"
+  publish = "dist/client"
+  functions = "netlify/functions"
+
+[[redirects]]
+  from = "/users"
+  to = "/.netlify/functions/getUsers"
+  status = 200
+
+[[redirects]]
+  from = "/users/*"
+  to = "/.netlify/functions/updateUser/:splat"
+  status = 200 
