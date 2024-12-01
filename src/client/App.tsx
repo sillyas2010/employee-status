@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Button from './components/Button'
 import EmployeeList from './components/EmployeeList'
 import Filters from './components/Filters'
-import { Employee } from './types'
+import { Employee, EmployeeStatus } from './types'
 
 function App() {
 	const [employees, setEmployees] = useState<Employee[]>([])
@@ -26,6 +26,21 @@ function App() {
 		}
 	}
 
+	const handleStatusUpdate = (
+		employeeId: number,
+		newStatus: EmployeeStatus,
+	) => {
+		setEmployees(prevEmployees => {
+			const newEmployees = prevEmployees.map(emp =>
+				emp.id === employeeId ? { ...emp, status: newStatus } : emp,
+			)
+
+			filterEmployees(searchQuery, statusFilter, newEmployees)
+
+			return newEmployees
+		})
+	}
+
 	const handleSearch = (query: string) => {
 		setSearchQuery(query)
 		filterEmployees(query, statusFilter)
@@ -36,13 +51,23 @@ function App() {
 		filterEmployees(searchQuery, status)
 	}
 
-	const filterEmployees = (query: string, status: string) => {
-		let filtered = employees
+	const filterEmployees = (
+		query: string,
+		status: string,
+		initialList = employees,
+	) => {
+		let filtered = initialList
+
+		if (!query && !status) {
+			filtered = initialList
+		}
 
 		if (query) {
 			filtered = filtered.filter((emp: Employee) =>
 				emp.name.toLowerCase().includes(query.toLowerCase()),
 			)
+		} else {
+			filtered = initialList
 		}
 
 		if (status) {
@@ -72,7 +97,7 @@ function App() {
 			<section className="mt-[5rem]">
 				<EmployeeList
 					employees={filteredEmployees}
-					onStatusUpdate={fetchEmployees}
+					onStatusUpdate={handleStatusUpdate}
 				/>
 			</section>
 		</div>

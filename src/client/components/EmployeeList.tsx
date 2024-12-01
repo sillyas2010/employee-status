@@ -1,10 +1,10 @@
-import { indicators, statuses } from '../constants/statuses'
-import { Employee, EmployeeStatus, Entries } from '../types'
+import { indicators, statusOptions } from '../constants/statuses'
+import { Employee, EmployeeStatus } from '../types'
 import Select from './Select'
 
 interface EmployeeListProps {
 	employees: Employee[]
-	onStatusUpdate: () => void
+	onStatusUpdate: (employeeId: number, newStatus: EmployeeStatus) => void
 }
 
 const indicatorInner = (status: EmployeeStatus) => `
@@ -33,15 +33,11 @@ const indicatorOuter = `
   after:bg-white 
 `
 
-const statusOptions = (
-	Object.entries(statuses) as Entries<typeof statuses>
-).map(([value, label]) => ({
-	value,
-	label,
-}))
-
 function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
-	const handleStatusChange = async (employeeId: number, newStatus: string) => {
+	const handleStatusChange = async (
+		employeeId: number,
+		newStatus: EmployeeStatus,
+	) => {
 		try {
 			await fetch(`/users/${employeeId}`, {
 				method: 'PATCH',
@@ -50,7 +46,7 @@ function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
 				},
 				body: JSON.stringify({ status: newStatus }),
 			})
-			onStatusUpdate()
+			onStatusUpdate(employeeId, newStatus)
 		} catch (error) {
 			console.error('Error updating employee status:', error)
 		}
@@ -58,9 +54,9 @@ function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
 
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-[3.2rem]">
-			{employees.map(employee => (
+			{employees.map((employee, index) => (
 				<div
-					key={employee.id}
+					key={`${employee.id}-${index}`}
 					className="flex rounded-md bg-white min-h-[11rem] py-6 pl-6 pr-6 drop-shadow-gray hover:drop-shadow-primary transition-shadow duration-200"
 				>
 					<img
@@ -80,7 +76,9 @@ function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
 									selectedValue={employee.status}
 									hasDefault={false}
 									options={statusOptions}
-									onChange={value => handleStatusChange(employee.id, value)}
+									onChange={value =>
+										handleStatusChange(employee.id, value as EmployeeStatus)
+									}
 									className="w-full py-0 pl-[.8rem] text-xs bg-transparent border-none"
 									placeholder="Select an option"
 								/>

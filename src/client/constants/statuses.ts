@@ -1,4 +1,4 @@
-import { EmployeeStatus } from '../types'
+import { EmployeeStatus, Entries } from '../types'
 
 export const statuses: Record<EmployeeStatus, string> = {
 	working: 'Working',
@@ -6,6 +6,13 @@ export const statuses: Record<EmployeeStatus, string> = {
 	'business-trip': 'Business Trip',
 	'lunch-time': 'Lunch Time',
 } as const
+
+export const statusOptions = (
+	Object.entries(statuses) as Entries<typeof statuses>
+).map(([value, label]) => ({
+	value,
+	label,
+}))
 
 export const indicators: Record<EmployeeStatus, string> = {
 	working: 'before:bg-status-working',

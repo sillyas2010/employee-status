@@ -1,12 +1,6 @@
+import { statusOptions } from '../constants/statuses'
 import SearchBar from './SearchBar'
 import Select from './Select'
-
-const statusOptions = [
-	{ value: 'Working', label: 'Working' },
-	{ value: 'On Vacation', label: 'On Vacation' },
-	{ value: 'Lunch Time', label: 'Lunch Time' },
-	{ value: 'Business Trip', label: 'Business Trip' },
-]
 
 interface FiltersProps {
 	onSearch: (query: string) => void
