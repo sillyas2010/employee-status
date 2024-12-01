@@ -16,7 +16,7 @@ const Header = () => {
 				<Button
 					variant="outline"
 					onPress={handleLogout}
-					className="text-[.95rem] font-normal leading-5 mt-1 min-w-[7.5rem]"
+					className="text-[.95rem] font-normal leading-5 mt-1 min-w-[7.5rem] focus:ring-offset-2"
 					padding="py-1.5 px-6"
 				>
 					{isLoggedIn ? 'Log Out' : 'Log In'}

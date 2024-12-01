@@ -18,13 +18,13 @@ interface ModalProps extends AriaModalOverlayProps {
 	}) => ReactNode
 }
 
-export default function Modal({
+const Modal = ({
 	isOpen,
 	setIsOpen,
 	children,
 	className = '',
 	...props
-}: ModalProps) {
+}: ModalProps) => {
 	const ref = useRef(null)
 	const hiddenElements = useRef<HTMLElement[]>([])
 	const [onOpen, onClose, onToggle] = [
@@ -84,3 +84,5 @@ export default function Modal({
 		</Overlay>
 	)
 }
+
+export default Modal

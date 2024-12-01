@@ -7,7 +7,7 @@ interface FiltersProps {
 	onStatusFilter: (status: string) => void
 }
 
-function Filters({ onSearch, onStatusFilter }: FiltersProps) {
+const Filters = ({ onSearch, onStatusFilter }: FiltersProps) => {
 	const delimiterStyling =
 		"before:content-[''] before:inline-block before:bg-secondary-300 before:w-[1px] before:h-[1.6rem] before:absolute before:left-[-7px] before:top-1/2 before:translate-y-[-50%]"
 	return (

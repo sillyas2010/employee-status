@@ -1,4 +1,4 @@
-import React from 'react'
+import { focusState } from '../constants/styling'
 
 interface Option {
 	value: string
@@ -15,7 +15,7 @@ interface SelectProps {
 	onChange: (value: string) => void
 }
 
-function Select({
+const Select = ({
 	options,
 	label,
 	hasDefault = true,
@@ -23,14 +23,14 @@ function Select({
 	placeholder = 'Select an option',
 	className = '',
 	onChange,
-}: SelectProps) {
+}: SelectProps) => {
 	const selectArrow = `after:w-0 after:h-0 after:right-[.3rem] after:content-[''] after:border-transparent after:border-t-secondary-400 after:border-t-[.4rem] after:border-l-[.4rem] after:border-r-[.4rem] after:absolute after:top-[55%] after:translate-y-[-50%]`
 
 	return (
 		<div className={`relative ${selectArrow}`}>
 			<select
 				aria-label={label || placeholder}
-				className={`pl-[1.1rem] pr-[2.1rem] appearance-none font-madet font-normal text-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary focus:rounded-sm ${className}`}
+				className={`pl-[1.1rem] pr-[2.1rem] appearance-none font-madet font-normal text-secondary-500 ${focusState} focus:rounded-sm ${className}`}
 				onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					onChange(e.target.value)
 				}

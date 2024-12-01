@@ -7,7 +7,7 @@ interface TextInputProps extends InputHTMLAttributes<HTMLInputElement> {
 	value: string
 }
 
-export const TextInput = ({
+const TextInput = ({
 	className = '',
 	placeholder,
 	onChange,
@@ -23,3 +23,5 @@ export const TextInput = ({
 		{...props}
 	/>
 )
+
+export default TextInput

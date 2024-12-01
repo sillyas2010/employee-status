@@ -4,10 +4,10 @@ import { statusOptions } from '../constants/statuses'
 import { focusState } from '../constants/styling'
 import { EmployeeStatus } from '../types'
 import Button from './Button'
-import { Field } from './Field'
+import Field from './Field'
 import Modal from './Modal'
 import Select from './Select'
-import { TextInput } from './TextInput'
+import TextInput from './TextInput'
 
 interface CreateEmployeeModalProps {
 	isOpen: boolean
@@ -15,19 +15,21 @@ interface CreateEmployeeModalProps {
 	onSubmit: (name: string, status: EmployeeStatus) => void
 }
 
-export default function CreateEmployeeModal({
+const CreateEmployeeModal = ({
 	isOpen,
 	setIsOpen,
 	onSubmit,
-}: CreateEmployeeModalProps) {
+}: CreateEmployeeModalProps) => {
 	const [name, setName] = useState('')
 	const [status, setStatus] = useState<EmployeeStatus>(statusOptions[0].value)
 
-	const handleSubmit = (e: React.FormEvent) => {
+	const handleSubmit = (e: React.FormEvent, close: () => void) => {
 		e.preventDefault()
-		if (name.trim()) {
+		if (name) {
 			onSubmit(name, status)
-			setIsOpen(false)
+			setName('')
+			setStatus(statusOptions[0].value)
+			close()
 		}
 	}
 
@@ -54,7 +56,7 @@ export default function CreateEmployeeModal({
 						Create New User
 					</h2>
 					<span className="absolute left-0 right-0 h-[2px] bg-secondary-200" />
-					<form onSubmit={handleSubmit} className="pt-[1.1rem]">
+					<form onSubmit={e => handleSubmit(e, close)} className="pt-[1.1rem]">
 						<Field label="User name:">
 							<TextInput
 								value={name}
@@ -77,7 +79,7 @@ export default function CreateEmployeeModal({
 							<Button
 								type="submit"
 								variant="primary"
-								className="text-white px-[1.3rem] py-0 leading-5"
+								className="text-white px-[1.3rem] py-0 leading-5 focus:ring-offset-2"
 							>
 								Create
 							</Button>
@@ -85,7 +87,7 @@ export default function CreateEmployeeModal({
 								type="button"
 								variant="outline"
 								onPress={() => close()}
-								className="px-[.5rem] py-0 leading-5 border-none text-secondary-600 font-normal hover:text-gray-800"
+								className="px-[.5rem] py-0 leading-5 border-none text-secondary-600 font-normal hover:text-gray-800 focus:ring-offset-2"
 							>
 								Cancel
 							</Button>
@@ -96,3 +98,5 @@ export default function CreateEmployeeModal({
 		</Modal>
 	)
 }
+
+export default CreateEmployeeModal

@@ -33,25 +33,7 @@ const indicatorOuter = `
   after:bg-white 
 `
 
-function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
-	const handleStatusChange = async (
-		employeeId: number,
-		newStatus: EmployeeStatus,
-	) => {
-		try {
-			await fetch(`/users/${employeeId}`, {
-				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ status: newStatus }),
-			})
-			onStatusUpdate(employeeId, newStatus)
-		} catch (error) {
-			console.error('Error updating employee status:', error)
-		}
-	}
-
+const EmployeeList = ({ employees, onStatusUpdate }: EmployeeListProps) => {
 	return (
 		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-[3.2rem]">
 			{employees.map((employee, index) => (
@@ -78,9 +60,9 @@ function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
 									hasDefault={false}
 									options={statusOptions}
 									onChange={value =>
-										handleStatusChange(employee.id, value as EmployeeStatus)
+										onStatusUpdate(employee.id, value as EmployeeStatus)
 									}
-									className="w-full py-0 pl-[.8rem] text-xs bg-transparent border-none"
+									className="w-full py-0 pl-[.8rem] text-xs bg-transparent border-none focus:ring-offset-2"
 									placeholder="Select an option"
 								/>
 							</div>

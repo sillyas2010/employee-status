@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 
-export const Field = ({
+const Field = ({
 	label,
 	className = '',
 	children,
@@ -14,3 +14,5 @@ export const Field = ({
 		{children}
 	</div>
 )
+
+export default Field
