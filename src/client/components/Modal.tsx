@@ -10,6 +10,7 @@ import {
 interface ModalProps extends AriaModalOverlayProps {
 	isOpen: boolean
 	setIsOpen: Dispatch<SetStateAction<boolean>>
+	className?: string
 	children: (props: {
 		close: () => void
 		dialogProps?: DialogAria['dialogProps']
@@ -21,6 +22,7 @@ export default function Modal({
 	isOpen,
 	setIsOpen,
 	children,
+	className = '',
 	...props
 }: ModalProps) {
 	const ref = useRef(null)
@@ -70,7 +72,7 @@ export default function Modal({
 					{...modalProps}
 					{...dialogProps}
 					ref={ref}
-					className="bg-white rounded-lg p-6 w-[400px]"
+					className={`bg-white rounded-sm py-6 px-7 w-[400px] relative ${className}`}
 				>
 					{children({
 						close: onClose,
