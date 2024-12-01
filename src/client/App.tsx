@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
 import Button from './components/Button'
+import CreateEmployeeModal from './components/CreateEmployeeModal'
 import EmployeeList from './components/EmployeeList'
 import Filters from './components/Filters'
 import { Employee, EmployeeStatus } from './types'
@@ -10,6 +11,7 @@ function App() {
 	const [filteredEmployees, setFilteredEmployees] = useState<Employee[]>([])
 	const [searchQuery, setSearchQuery] = useState('')
 	const [statusFilter, setStatusFilter] = useState('')
+	const [isModalOpen, setIsModalOpen] = useState(false)
 
 	useEffect(() => {
 		fetchEmployees()
@@ -83,6 +85,7 @@ function App() {
 				<Button
 					className="text-xl leading-[1.5rem] rounded-md"
 					padding="pl-[2.3rem] pr-[2rem] py-[1.2rem]"
+					onPress={() => setIsModalOpen(true)}
 				>
 					Create{' '}
 					<span className="font-sans h-0 inline-block relative top-[.35rem] left-[.25rem] after:content-['+'] after:text-[2.4rem] after:[line-height:0]" />
@@ -100,6 +103,11 @@ function App() {
 					onStatusUpdate={handleStatusUpdate}
 				/>
 			</section>
+			<CreateEmployeeModal
+				onSubmit={() => null}
+				isOpen={isModalOpen}
+				setIsOpen={setIsModalOpen}
+			/>
 		</div>
 	)
 }
