@@ -73,6 +73,7 @@ function EmployeeList({ employees, onStatusUpdate }: EmployeeListProps) {
 								className={`w-full ${indicatorInner(employee.status)} ${indicatorOuter}`}
 							>
 								<Select
+									label={`${employee.name} current status`}
 									selectedValue={employee.status}
 									hasDefault={false}
 									options={statusOptions}

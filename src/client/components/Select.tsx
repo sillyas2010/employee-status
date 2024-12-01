@@ -7,6 +7,7 @@ interface Option {
 
 interface SelectProps {
 	options: Option[]
+	label?: string
 	placeholder?: string
 	className?: string
 	hasDefault?: boolean
@@ -16,6 +17,7 @@ interface SelectProps {
 
 function Select({
 	options,
+	label,
 	hasDefault = true,
 	selectedValue,
 	placeholder = 'Select an option',
@@ -27,6 +29,7 @@ function Select({
 	return (
 		<div className={`relative ${selectArrow}`}>
 			<select
+				aria-label={label}
 				className={`pl-[1.1rem] pr-[2.1rem] appearance-none font-madet font-normal text-secondary-500 focus:outline-none focus:ring-2 focus:ring-primary focus:rounded-sm ${className}`}
 				onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					onChange(e.target.value)
