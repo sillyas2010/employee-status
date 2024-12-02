@@ -33,7 +33,7 @@ const Select = ({
 			<select
 				aria-label={label || placeholder}
 				value={selectedValue}
-				className={`appearance-none font-madet font-normal text-secondary-500 ${focusState} focus:rounded-sm ${className}`}
+				className={`appearance-none bg-transparent font-madet font-normal text-secondary-500 ${focusState} focus:rounded-sm ${className}`}
 				onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
 					onChange(e.target.value)
 				}
